@@ -1,31 +1,30 @@
-# define with_docker
-# 	@docker run -it
-# endef
+define with_docker
+	docker-compose run gotemplate dep ensure && dep status && $(1)
+endef
 
-.PHONY: all dep build clean test coverage coverhtml lint
+docker-compose:
+	which docker-compose
 
-all: build
+docker-build: docker-compose
+	docker-compose build --force-rm
 
-lint: ## Lint the files
-	@golint -set_exit_status .
-# vet
-# lint
-# fmt
+docker-clean: docker-compose
+	docker-compose down
 
+setup: docker-build
 
-test: ## Run unittests
-	@go test -short .
+clean: docker-clean
 
-race: dep ## Run data race detector
-	@go test -race -short  .
+fmt: setup
+	$(call with_docker,gofmt -s .)
 
-msan: dep ## Run memory sanitizer
-	@go test -msan -short  .
+lint: setup
+	$(call with_docker,golint -set_exit_status .)
 
-coverage: ## Generate global code coverage report
+test: setup
+	$(call with_docker,go test -short .)
+	$(call with_docker,go test -race -short .)
+	$(call with_docker,go test -msan -short .)
 
-dep: ## Get the dependencies
-	@dep ensure
-
-build: dep ## Build the binary file
-	@go build -i -v
+build: setup
+	$(call with_docker,go build -i -v -o bin/main cmd/main.go)
