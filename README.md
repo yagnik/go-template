@@ -1,6 +1,6 @@
 # Go Template
 [![Go Report Card](https://goreportcard.com/badge/github.com/yagnik/go-template)](https://goreportcard.com/report/github.com/yagnik/go-template)
-[![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](http://godoc.org/github.com/golang-standards/project-layout)
+[![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](http://godoc.org/github.com/yagnik/go-template)
 [![Release](https://img.shields.io/github/release/yagnik/go-template.svg?style=flat-square)](https://github.com/yagnik/go-template/releases/latest)
 [![Build Status](https://travis-ci.org/yagnik/go-template.svg?branch=master)](https://travis-ci.org/yagnik/go-template)
 
