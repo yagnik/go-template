@@ -7,6 +7,14 @@
 
 Basic template for go projects to get started
 
+## Setup
+- (PREREQUISITE) Please have docker and docker-compose installed
+- Clone this repo: `git clone git@github.com:yagnik/go-template.git`
+- Inside the directory where you cloned the repo run: `make test`.
+- The above will bring up docker containers using docker-compose and run tests to ensure everything is setup properly.
+- Remove the folders as needed according to your project
+- Replace path in docker-compose and Dockerfile to your go code
+
 ## Directory structure
 - cmd: main applications, directories inside should match executable
 - internal: private package code

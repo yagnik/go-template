@@ -1,0 +1,8 @@
+version: '3'
+services:
+  gotemplate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+    - .:/go/src/github.com/yagnik/go-template
