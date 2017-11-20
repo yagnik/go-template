@@ -32,3 +32,11 @@ Basic template for go projects to get started
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
 - [thokin/go-build-template](https://github.com/thockin/go-build-template)
 - [pantomath-io/demo-tools](https://gitlab.com/pantomath-io/demo-tools/blob)
+
+
+## Pending
+- [] add support for gox and multiple os build
+- [] ensure that tests run and cover
+- [] add support for gocycle
+- [] add support for releasing docker containers
+- [] tag last version to 1.0 and update release tag
