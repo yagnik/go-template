@@ -42,7 +42,10 @@ build: setup ## build binaries for the project
 	$(call with_docker,gox -osarch="$(GOX_ARCH)" ./pkg/...)
 	$(call with_docker,gox -output="bin/{{.Dir}}_{{.OS}}_{{.Arch}}" -osarch="$(GOX_ARCH)" ./cmd/...)
 
-all: setup fmt vet lint test build ## run all tests and lints
+package: build
+	$(call with_docker, sh -c 'gzip bin/*')
+
+all: setup fmt vet lint test build package ## run all tests and lints
 
 help: ## display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
