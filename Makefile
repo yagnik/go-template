@@ -23,7 +23,7 @@ clean: docker-clean ## clean environment and binaries
 	rm -rf bin
 
 fmt: setup ## run go fmt
-	$(call with_docker,! gofmt -l .  2>&1 | read)
+	$(call with_docker,sh -c '[ -z "$$(gofmt -l .)" ]')
 
 vet: setup ## run go vet
 	$(call with_docker,go vet ./...)
@@ -34,8 +34,10 @@ lint: setup ## run go lint
 test: setup ## run go tests
 	$(call with_docker,go test -race -short -cover ./...)
 
+all: setup fmt vet lint test ## run all tests and lints
+
 build: setup ## build binaries for the project
 	$(call with_docker,gox -output="bin/{{.Dir}}_{{.OS}}_{{.Arch}}" -osarch="linux/amd64 windows/amd64 darwin/amd64" ./cmd/)
 
-help: ## Display this help screen
+help: ## display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
