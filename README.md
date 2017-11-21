@@ -35,8 +35,5 @@ Basic template for go projects to get started
 
 
 ## Pending
-- [] add support for gox and multiple os build
 - [] ensure that tests run and cover
-- [] add support for gocycle
-- [] add support for releasing docker containers
 - [] tag last version to 1.0 and update release tag

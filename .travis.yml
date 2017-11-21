@@ -1,8 +1,18 @@
 language: go
 go:
-  - 1.9.x
-  - master
+- 1.9.x
+- master
 services:
-  - docker
+- docker
 script:
-  - make fmt
+- make fmt
+
+deploy:
+  provider: releases
+  api_key:
+    secure: OA6RdaBvYucK4rAtoKuSJcmz4Yxta2n0t4b2cdWrFwhS8oGgNsVe2dx2Xx9vmf8fPm/XguRd1lBGH6CR77uWZbPyoD3MTSCrLE0gugJf3Zm73xYwNtInpHOrh3f5YU+Qqt0yFmrNfwgXzbw9Lpwyp5VQdHQ2cnnUVmTLJqQBONAuuEEN+GNnXzDEt/k6czhzH0GQMzIOxJjEfqerK4CFQpfd3tXU26sgrbAEn0PeP6PARj79nLvV5qs5yptP9bLUN5asIZMHLBKLOSOf1JZ6S2wIg3i8VrcYYt4yJ92TymnEScjOGnWbYvD8jmYFpjtL2Oeexoya1YY82oG6Ifu1VPqUl3wFq4SuygPUnEnl0oWBomSLaDhLlYadzXZpqaN8NLWY5is+lNlVkoHeFjTJ/siVoOUDZaNHBBXelRqjbnjZGMj60G+1+0+RiM+ycKSUhk0VT8CbC3/SefSwOOWkLShxW66VQKcNdh3/6DZ0Ra8+xh3WTa5juDCau9OGbJuF4IT+aX0vlZliOrZksSfPm1tLsDyv3bp+dLt1zFldUDUj7oi3PNKIzFct/HtEeo/ch3N2M67PkYqQsOua5XgQRPzDZvlqyGQligE+781NAqtlzup1RSwLgdoj6kaEPgIAvE0VuGKLfzAriDAvcy8Laz8OZkk/7rdA94Rcx0FuESo=
+  file_glob: true
+  file: bin/*
+  on:
+    repo: yagnik/go-template
+    tags: true
