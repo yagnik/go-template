@@ -1,21 +1,22 @@
 PROJECT_NAME = go-template
+WORK_DIR = /go/src/github.com/yagnik/${PROJECT_NAME}
 GOX_ARCH = linux/amd64 windows/amd64 darwin/amd64
 
 define with_docker
-	docker-compose run --rm $(PROJECT_NAME) $(1)
+	WORK_DIR=$(WORK_DIR) docker-compose run --rm $(PROJECT_NAME) $(1)
 endef
 
 login: setup ## get a shell into the container
-	docker-compose run --rm --entrypoint /bin/bash $(PROJECT_NAME)
+	WORK_DIR=$(WORK_DIR) docker-compose run --rm --entrypoint /bin/bash $(PROJECT_NAME)
 
 docker-compose:
 	which docker-compose
 
 docker-build: docker-compose
-	docker-compose build --force-rm
+	WORK_DIR=$(WORK_DIR) docker-compose build --force-rm
 
 docker-clean: docker-compose
-	docker-compose down
+	WORK_DIR=$(WORK_DIR) docker-compose down
 
 dep: docker-build #
 	$(call with_docker,dep ensure)

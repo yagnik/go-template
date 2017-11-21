@@ -13,7 +13,7 @@ Basic template for go projects to get started
 - Inside the directory where you cloned the repo run: `make test`.
 - The above will bring up docker containers using docker-compose and run tests to ensure everything is setup properly.
 - Remove the folders as needed according to your project
-- Replace path in docker-compose and Dockerfile to your go code
+- Replace path in makefile to your go code
 
 ## Directory structure
 - cmd: main applications, directories inside should match executable
@@ -32,7 +32,3 @@ Basic template for go projects to get started
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
 - [thokin/go-build-template](https://github.com/thockin/go-build-template)
 - [pantomath-io/demo-tools](https://gitlab.com/pantomath-io/demo-tools/blob)
-
-
-## Pending
-- [] tag last version to 1.0 and update release tag

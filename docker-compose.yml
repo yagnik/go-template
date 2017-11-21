@@ -5,5 +5,5 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-    - .:/go/src/github.com/yagnik/go-template
-    working_dir: /go/src/github.com/yagnik/go-template
+    - .:${WORK_DIR}
+    working_dir: ${WORK_DIR}
