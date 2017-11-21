@@ -35,5 +35,4 @@ Basic template for go projects to get started
 
 
 ## Pending
-- [] ensure that tests run and cover
 - [] tag last version to 1.0 and update release tag

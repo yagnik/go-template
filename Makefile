@@ -23,19 +23,16 @@ clean: docker-clean ## clean environment and binaries
 	rm -rf bin
 
 fmt: setup ## run go fmt
-	$(call with_docker,gofmt -s .)
+	$(call with_docker,! gofmt -l .  2>&1 | read)
 
 vet: setup ## run go vet
-	$(call with_docker,go vet -s .)
+	$(call with_docker,go vet ./...)
 
 lint: setup ## run go lint
-	$(call with_docker,golint -set_exit_status .)
+	$(call with_docker,golint -set_exit_status ./...)
 
 test: setup ## run go tests
-	$(call with_docker,go test -short ./..)
-	$(call with_docker,go test -race -short .)
-	$(call with_docker,go test -msan -short .)
-	$(call with_docker,go test -cover -short .)
+	$(call with_docker,go test -race -short -cover ./...)
 
 build: setup ## build binaries for the project
 	$(call with_docker,gox -output="bin/{{.Dir}}_{{.OS}}_{{.Arch}}" -osarch="linux/amd64 windows/amd64 darwin/amd64" ./cmd/)
