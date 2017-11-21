@@ -1,9 +1,12 @@
+PROJECT_NAME = go-template
+GOX_ARCH = linux/amd64 windows/amd64 darwin/amd64
+
 define with_docker
-	docker-compose run --rm gotemplate $(1)
+	docker-compose run --rm $(PROJECT_NAME) $(1)
 endef
 
 login: setup ## get a shell into the container
-	docker-compose run --rm --entrypoint /bin/bash gotemplate
+	docker-compose run --rm --entrypoint /bin/bash $(PROJECT_NAME)
 
 docker-compose:
 	which docker-compose
@@ -37,7 +40,8 @@ test: setup ## run go tests
 all: setup fmt vet lint test ## run all tests and lints
 
 build: setup ## build binaries for the project
-	$(call with_docker,gox -output="bin/{{.Dir}}_{{.OS}}_{{.Arch}}" -osarch="linux/amd64 windows/amd64 darwin/amd64" ./cmd/)
+	$(call with_docker,gox -osarch="$(GOX_ARCH)" ./pkg/...)
+	$(call with_docker,gox -output="bin/{{.Dir}}_{{.OS}}_{{.Arch}}" -osarch="$(GOX_ARCH)" ./cmd/...)
 
 help: ## display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

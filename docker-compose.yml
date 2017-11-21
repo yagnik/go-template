@@ -1,8 +1,9 @@
 version: '3'
 services:
-  gotemplate:
+  go-template:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
     - .:/go/src/github.com/yagnik/go-template
+    working_dir: /go/src/github.com/yagnik/go-template
