@@ -20,7 +20,6 @@ Basic template for go projects to get started
 - internal: private package code
 - pkg: public package code
 - vendor: managed by dep tool
-- third_party: code forked from third party and modified
 - api: openapi specs, schema and proto files
 - web: web app components, templates etc
 - config: configuration files
@@ -28,7 +27,8 @@ Basic template for go projects to get started
 - test: external tests and data
 - examples: examples for applicaton and public packages
 
-## Inspired by: 
+## Inspired by:
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
 - [thokin/go-build-template](https://github.com/thockin/go-build-template)
 - [pantomath-io/demo-tools](https://gitlab.com/pantomath-io/demo-tools/blob)
+- [MartinHeinz/go-project-blueprint](https://github.com/MartinHeinz/go-project-blueprint)

@@ -1,11 +1,7 @@
-FROM golang:1.9
+FROM golang:1.13
 MAINTAINER Yagnik
 
 ENV GOPATH /go
 ENV PATH ${GOPATH}/bin:$PATH
-RUN go get -u github.com/golang/dep/cmd/dep
-RUN go get -u github.com/golang/lint/golint
+RUN go get -u golang.org/x/lint/golint
 RUN go get -u github.com/mitchellh/gox
-
-
-

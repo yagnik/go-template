@@ -18,10 +18,7 @@ docker-build: docker-compose
 docker-clean: docker-compose
 	WORK_DIR=$(WORK_DIR) docker-compose down
 
-dep: docker-build #
-	$(call with_docker,dep ensure)
-
-setup: clean docker-build dep ## setup environment for development
+setup: clean docker-build ## setup environment for development
 
 clean: docker-clean ## clean environment and binaries
 	rm -rf bin
