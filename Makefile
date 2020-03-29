@@ -42,4 +42,9 @@ docker-setup: docker-start ## setup salt with docker containers for testing
 docker-test: docker-setup ## run salt tests inside container
 	$(call with_docker, exec client make test)
 
+docker-build: docker-setup ## run salt tests inside container
+	$(call with_docker, exec client make build)
+
 .PHONY: test build
+
+all: docker-setup docker-test docker-build

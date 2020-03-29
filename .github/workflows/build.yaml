@@ -1,0 +1,17 @@
+name: Linux
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: build
+      uses: actions/checkout@v1
+      run: make all
